@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --bg-app: #EEF2F0;
+    --surface-app: #F5F7F6;
+    --surface-elevated: #FAFBFA;
+    --text-primary: #1F2937;
+    --text-secondary: #64748B;
+    --primary: #059669;
+    --primary-hover: #047857;
+    --income: #16A34A;
+    --expense: #DC2626;
+    --warning: #CA8A04;
+    
+    /* Neumorphic shadow tokens - Light */
+    --neu-shadow-dark: rgba(166, 178, 173, 0.5);
+    --neu-shadow-light: rgba(255, 255, 255, 0.95);
+    --neu-border: rgba(255, 255, 255, 0.7);
+    --neu-border-subtle: rgba(166, 178, 173, 0.25);
+  }
+
+  .dark {
+    --bg-app: #101513;
+    --surface-app: #171E1A;
+    --surface-elevated: #1D2622;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --primary: #10B981;
+    --primary-hover: #059669;
+    --income: #22C55E;
+    --expense: #EF4444;
+    --warning: #F59E0B;
+
+    /* Neumorphic shadow tokens - Dark */
+    --neu-shadow-dark: rgba(0, 0, 0, 0.65);
+    --neu-shadow-light: rgba(255, 255, 255, 0.04);
+    --neu-border: rgba(255, 255, 255, 0.07);
+    --neu-border-subtle: rgba(0, 0, 0, 0.4);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not(.light) {
+      --bg-app: #101513;
+      --surface-app: #171E1A;
+      --surface-elevated: #1D2622;
+      --text-primary: #F1F5F9;
+      --text-secondary: #94A3B8;
+      --primary: #10B981;
+      --primary-hover: #059669;
+      --income: #22C55E;
+      --expense: #EF4444;
+      --warning: #F59E0B;
+
+      --neu-shadow-dark: rgba(0, 0, 0, 0.65);
+      --neu-shadow-light: rgba(255, 255, 255, 0.04);
+      --neu-border: rgba(255, 255, 255, 0.07);
+      --neu-border-subtle: rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+/* ========================================================
+   MODERN NEUMORPHISM (SOFT UI) UTILITIES
+   ======================================================== */
+
+/* Level 1: Flat/Subtle Raised */
+.neu-flat {
+  background-color: var(--surface-app);
+  box-shadow: 3px 3px 7px var(--neu-shadow-dark), -3px -3px 7px var(--neu-shadow-light);
+  border: 1px solid var(--neu-border);
+}
+
+/* Level 2: Raised Cards */
+.neu-card {
+  background-color: var(--surface-app);
+  box-shadow: 6px 6px 14px var(--neu-shadow-dark), -5px -5px 12px var(--neu-shadow-light);
+  border: 1px solid var(--neu-border);
+}
+
+/* Level 3: Elevated / Floating */
+.neu-floating {
+  background-color: var(--surface-elevated);
+  box-shadow: 9px 9px 20px var(--neu-shadow-dark), -7px -7px 18px var(--neu-shadow-light);
+  border: 1px solid var(--neu-border);
+}
+
+/* Inset / Sunken / Well for Inputs, Wells, Tracks */
+.neu-sunken {
+  background-color: var(--bg-app);
+  box-shadow: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light);
+  border: 1px solid var(--neu-border-subtle);
+}
+
+.neu-sunken-sm {
+  background-color: var(--bg-app);
+  box-shadow: inset 2px 2px 4px var(--neu-shadow-dark), inset -2px -2px 4px var(--neu-shadow-light);
+  border: 1px solid var(--neu-border-subtle);
+}
+
+/* Interactive Neumorphic Button */
+.neu-button {
+  background-color: var(--surface-app);
+  box-shadow: 4px 4px 9px var(--neu-shadow-dark), -3px -3px 8px var(--neu-shadow-light);
+  border: 1px solid var(--neu-border);
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-button:hover {
+  box-shadow: 5px 5px 11px var(--neu-shadow-dark), -4px -4px 10px var(--neu-shadow-light);
+  transform: translateY(-1px);
+}
+
+.neu-button:active {
+  box-shadow: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light);
+  transform: translateY(1px);
+}
+
+/* Active Pressed state */
+.neu-pressed {
+  background-color: var(--bg-app);
+  box-shadow: inset 3px 3px 6px var(--neu-shadow-dark), inset -3px -3px 6px var(--neu-shadow-light) !important;
+  border: 1px solid var(--neu-border-subtle) !important;
+}
+
+/* Primary Accent Soft Button */
+.neu-primary-btn {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  box-shadow: 4px 4px 12px rgba(5, 150, 105, 0.38), -2px -2px 8px var(--neu-shadow-light);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-primary-btn:hover {
+  background: linear-gradient(135deg, #047857 0%, #065F46 100%);
+  box-shadow: 5px 5px 15px rgba(5, 150, 105, 0.48), -3px -3px 10px var(--neu-shadow-light);
+  transform: translateY(-1px);
+}
+
+.neu-primary-btn:active {
+  box-shadow: inset 3px 3px 7px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.2);
+  transform: translateY(1px);
+}
+
+/* Primary Card with Neumorphism */
+.neu-hero-emerald {
+  background: linear-gradient(145deg, #065F46 0%, #047857 50%, #059669 100%);
+  box-shadow: 7px 7px 18px rgba(4, 120, 87, 0.35), -5px -5px 14px var(--neu-shadow-light);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.dark .neu-hero-emerald {
+  background: linear-gradient(145deg, #033C2C 0%, #044D38 50%, #05694D 100%);
+  box-shadow: 7px 7px 18px rgba(0, 0, 0, 0.6), -4px -4px 12px rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+html,
+body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar for clean mobile feel */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 9999px;
+}
