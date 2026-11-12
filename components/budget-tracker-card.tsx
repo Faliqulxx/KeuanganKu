@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useFinance } from '@/lib/finance-context';
 import { formatRupiah } from '@/lib/format';
-import { CATEGORY_ICONS } from '@/lib/categories';
+import { CategoryIcon, CATEGORY_COLORS } from '@/lib/categories';
 import { Target, Settings2, Check, X, AlertTriangle, ShieldCheck, Flame } from 'lucide-react';
 
 export function BudgetTrackerCard() {
@@ -25,7 +25,7 @@ export function BudgetTrackerCard() {
       <div className="rounded-3xl p-5 neu-card space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg neu-button flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+            <div className="w-6 h-6 rounded-lg neu-button flex items-center justify-center text-orange-600 dark:text-orange-400">
               <Target className="w-3.5 h-3.5" />
             </div>
             <h3 className="text-xs font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight">
@@ -38,7 +38,7 @@ export function BudgetTrackerCard() {
               setEditValues(budgets);
               setIsEditing(true);
             }}
-            className="flex items-center gap-1 text-[11px] font-bold text-emerald-600 dark:text-emerald-400 neu-button px-2.5 py-1 rounded-xl"
+            className="flex items-center gap-1 text-[11px] font-bold text-orange-600 dark:text-orange-400 neu-button px-2.5 py-1 rounded-xl"
             title="Atur batas anggaran per kategori"
           >
             <Settings2 className="w-3 h-3" />
@@ -49,15 +49,20 @@ export function BudgetTrackerCard() {
         {/* List of category budgets */}
         <div className="space-y-3.5">
           {summary.budgetStatuses.map((item) => {
-            const icon = CATEGORY_ICONS[item.category] || '📦';
             const isExceeded = item.status === 'exceeded';
             const isWarning = item.status === 'warning';
+            const catColor = CATEGORY_COLORS[item.category] || '#F7861E';
 
             return (
               <div key={item.category} className="space-y-1.5">
                 <div className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm">{icon}</span>
+                    <div
+                      className="w-6 h-6 rounded-lg neu-sunken flex items-center justify-center shrink-0"
+                      style={{ color: catColor }}
+                    >
+                      <CategoryIcon category={item.category} className="w-3.5 h-3.5 stroke-[2.2]" />
+                    </div>
                     <span className="font-extrabold text-neutral-800 dark:text-neutral-200">
                       {item.category}
                     </span>
@@ -66,7 +71,7 @@ export function BudgetTrackerCard() {
                         <Flame className="w-2.5 h-2.5" /> Over
                       </span>
                     ) : isWarning ? (
-                      <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md neu-sunken text-amber-600 dark:text-amber-400 uppercase tracking-wider flex items-center gap-0.5">
+                      <span className="text-[9px] font-black px-1.5 py-0.5 rounded-md neu-sunken text-amber-500 uppercase tracking-wider flex items-center gap-0.5">
                         <AlertTriangle className="w-2.5 h-2.5" /> Waspada
                       </span>
                     ) : (
@@ -114,7 +119,7 @@ export function BudgetTrackerCard() {
           <div className="bg-[var(--surface-app)] w-full sm:max-w-md mx-auto rounded-t-3xl sm:rounded-3xl neu-floating p-5 space-y-4 animate-in slide-in-from-bottom-6 duration-300">
             <div className="flex items-center justify-between pb-3 border-b border-[var(--neu-border)]">
               <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-emerald-600" />
+                <Target className="w-4 h-4 text-orange-600" />
                 <h3 className="font-extrabold text-neutral-900 dark:text-neutral-100 text-sm">
                   Atur Batas Anggaran Bulanan
                 </h3>
@@ -131,7 +136,12 @@ export function BudgetTrackerCard() {
               {Object.keys(budgets).map((category) => (
                 <div key={category} className="flex items-center justify-between gap-3 p-3 rounded-2xl neu-sunken-sm">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-base">{CATEGORY_ICONS[category] || '📦'}</span>
+                    <div
+                      className="w-7 h-7 rounded-lg neu-button flex items-center justify-center shrink-0"
+                      style={{ color: CATEGORY_COLORS[category] || '#F7861E' }}
+                    >
+                      <CategoryIcon category={category} className="w-4 h-4 stroke-[2.2]" />
+                    </div>
                     <span className="text-xs font-bold text-neutral-800 dark:text-neutral-200 truncate">
                       {category}
                     </span>

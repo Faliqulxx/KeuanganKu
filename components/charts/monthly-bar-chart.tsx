@@ -69,7 +69,7 @@ export function MonthlyBarChart({ data }: MonthlyBarChartProps) {
           <Bar
             dataKey="expense"
             name="expense"
-            fill="#DC2626"
+            fill="#EF4444"
             radius={[6, 6, 0, 0]}
             maxBarSize={18}
           />

@@ -34,13 +34,13 @@ export function BottomNav() {
                 <div
                   className={`w-14 h-14 rounded-full flex items-center justify-center text-white transition-all duration-200 ${
                     isActive
-                      ? 'neu-primary-btn ring-4 ring-emerald-500/30 scale-105'
+                      ? 'neu-primary-btn ring-4 ring-orange-500/30 scale-105'
                       : 'neu-primary-btn hover:scale-105 active:scale-95'
                   }`}
                 >
                   <Icon className="w-7 h-7 stroke-[2.5]" />
                 </div>
-                <span className="text-[10px] font-extrabold mt-1 text-emerald-600 dark:text-emerald-400 tracking-tight">
+                <span className="text-[10px] font-extrabold mt-1 text-orange-600 dark:text-orange-400 tracking-tight">
                   {item.label}
                 </span>
               </Link>
@@ -53,7 +53,7 @@ export function BottomNav() {
               href={item.href}
               className={`flex flex-col items-center justify-center w-14 py-1.5 rounded-2xl transition-all duration-200 ${
                 isActive
-                  ? 'neu-sunken text-emerald-600 dark:text-emerald-400 font-extrabold scale-102'
+                  ? 'neu-sunken text-orange-600 dark:text-orange-400 font-extrabold scale-102'
                   : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 active:scale-95'
               }`}
             >

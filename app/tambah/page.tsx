@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useFinance } from '@/lib/finance-context';
 import { EXPENSE_CATEGORIES, INCOME_CATEGORIES } from '@/lib/categories';
-import { Header } from '@/components/header';
 import { BottomNav } from '@/components/bottom-nav';
 import { mockReceiptScan, SAMPLE_RECEIPTS, ReceiptResult, ParsedItem } from '@/lib/mock-parser';
 import { PreviewCards } from '@/components/preview-cards';
@@ -103,9 +102,7 @@ export default function TambahPage() {
 
   return (
     <>
-      <Header showMonthPicker={false} />
-
-      <main className="flex-1 px-4 py-4 space-y-4">
+      <main className="flex-1 px-4 pt-5 pb-4 space-y-4">
         {/* Segmented Switch: Manual vs Struk */}
         <div className="flex neu-sunken p-1 rounded-2xl">
           <button
@@ -113,7 +110,7 @@ export default function TambahPage() {
             onClick={() => setActiveTab('manual')}
             className={`flex-1 py-2.5 rounded-xl text-xs font-extrabold transition-all duration-200 flex items-center justify-center gap-2 ${
               activeTab === 'manual'
-                ? 'neu-button text-emerald-600 dark:text-emerald-400'
+                ? 'neu-button text-orange-600 dark:text-orange-400'
                 : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
             }`}
           >
@@ -125,7 +122,7 @@ export default function TambahPage() {
             onClick={() => setActiveTab('receipt')}
             className={`flex-1 py-2.5 rounded-xl text-xs font-extrabold transition-all duration-200 flex items-center justify-center gap-2 ${
               activeTab === 'receipt'
-                ? 'neu-button text-emerald-600 dark:text-emerald-400'
+                ? 'neu-button text-orange-600 dark:text-orange-400'
                 : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
             }`}
           >
@@ -185,7 +182,7 @@ export default function TambahPage() {
               <label className="text-[10px] font-extrabold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest block mb-2">
                 Nominal (Rp)
               </label>
-              <div className="relative rounded-2xl neu-sunken p-1.5 focus-within:ring-2 focus-within:ring-emerald-500/40 transition-all">
+              <div className="relative rounded-2xl neu-sunken p-1.5 focus-within:ring-2 focus-within:ring-orange-500/40 transition-all">
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 font-black text-neutral-400 text-lg">
                   Rp
                 </span>
@@ -261,7 +258,7 @@ export default function TambahPage() {
           /* Scan Struk Section */
           <div className="rounded-3xl p-5 neu-card space-y-4">
             <div className="text-center py-2 space-y-2">
-              <div className="w-14 h-14 rounded-2xl neu-button text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
+              <div className="w-14 h-14 rounded-2xl neu-button text-orange-600 dark:text-orange-400 flex items-center justify-center mx-auto">
                 <Camera className="w-7 h-7 stroke-[2.2]" />
               </div>
               <h3 className="font-extrabold text-neutral-900 dark:text-neutral-100 text-sm">
@@ -291,7 +288,7 @@ export default function TambahPage() {
                         className="flex items-center justify-between p-3.5 rounded-2xl neu-button text-left"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-xl neu-sunken flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                          <div className="w-8 h-8 rounded-xl neu-sunken flex items-center justify-center text-orange-600 dark:text-orange-400">
                             <Store className="w-4 h-4" />
                           </div>
                           <div>
@@ -303,7 +300,7 @@ export default function TambahPage() {
                             </span>
                           </div>
                         </div>
-                        <span className="text-xs font-black text-emerald-600 dark:text-emerald-400">
+                        <span className="text-xs font-black text-orange-600 dark:text-orange-400">
                           {formatRupiah(s.total)}
                         </span>
                       </button>
@@ -313,7 +310,7 @@ export default function TambahPage() {
 
                 {/* Upload or Camera input */}
                 <label className="flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl neu-sunken hover:neu-button text-neutral-600 dark:text-neutral-300 text-xs font-extrabold cursor-pointer transition-all">
-                  <UploadCloud className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                  <UploadCloud className="w-4 h-4 text-orange-600 dark:text-orange-400" />
                   <span>Ambil Foto Kamera / Unggah Gambar</span>
                   <input
                     type="file"
@@ -326,8 +323,8 @@ export default function TambahPage() {
 
                 {isScanning && (
                   <div className="p-4 rounded-2xl neu-sunken text-center space-y-2">
-                    <div className="w-5 h-5 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto" />
-                    <p className="text-xs font-extrabold text-emerald-700 dark:text-emerald-300">
+                    <div className="w-5 h-5 border-2 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto" />
+                    <p className="text-xs font-extrabold text-orange-700 dark:text-orange-300">
                       Gemini Vision AI sedang membaca struk...
                     </p>
                   </div>
@@ -347,7 +344,7 @@ export default function TambahPage() {
                     <p className="text-[10px] text-neutral-400">
                       Tgl: {receiptResult.date} • 14:28 WIB
                     </p>
-                    <p className="text-[9px] text-emerald-600 dark:text-emerald-400 font-sans font-bold">
+                    <p className="text-[9px] text-orange-600 dark:text-orange-400 font-sans font-bold">
                       ✓ Terbaca oleh Gemini AI (Structured Output)
                     </p>
                   </div>
@@ -370,7 +367,7 @@ export default function TambahPage() {
                   <div className="pt-3 space-y-1.5">
                     <div className="flex justify-between items-center text-sm font-black">
                       <span className="text-neutral-900 dark:text-neutral-100">TOTAL BAYAR</span>
-                      <span className="text-emerald-600 dark:text-emerald-400">
+                      <span className="text-orange-600 dark:text-orange-400">
                         {formatRupiah(receiptResult.total)}
                       </span>
                     </div>
@@ -391,7 +388,7 @@ export default function TambahPage() {
                       onClick={() => setReceiptMode('single')}
                       className={`p-3 rounded-2xl text-xs font-extrabold flex items-center justify-center gap-2 transition-all ${
                         receiptMode === 'single'
-                          ? 'neu-sunken text-emerald-600 dark:text-emerald-400'
+                          ? 'neu-sunken text-orange-600 dark:text-orange-400'
                           : 'neu-button text-neutral-700 dark:text-neutral-300'
                       }`}
                     >
@@ -403,7 +400,7 @@ export default function TambahPage() {
                       onClick={() => setReceiptMode('split')}
                       className={`p-3 rounded-2xl text-xs font-extrabold flex items-center justify-center gap-2 transition-all ${
                         receiptMode === 'split'
-                          ? 'neu-sunken text-emerald-600 dark:text-emerald-400'
+                          ? 'neu-sunken text-orange-600 dark:text-orange-400'
                           : 'neu-button text-neutral-700 dark:text-neutral-300'
                       }`}
                     >

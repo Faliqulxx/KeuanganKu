@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { Wallet, Lock, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Lock, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -43,11 +44,18 @@ export default function LoginPage() {
       </div>
 
       <div className="text-center space-y-3 mb-8">
-        <div className="w-18 h-18 rounded-3xl neu-hero-emerald text-white flex items-center justify-center mx-auto transition-transform hover:scale-105">
-          <Wallet className="w-9 h-9 stroke-[2.2]" />
+        <div className="w-20 h-20 rounded-3xl neu-floating p-2 flex items-center justify-center mx-auto transition-transform hover:scale-105 shadow-xl shadow-orange-500/20 ring-1 ring-orange-500/30 overflow-hidden">
+          <Image
+            src="/brand/freeks-app-icon.png"
+            alt="FREEKS FinMate Logo"
+            width={80}
+            height={80}
+            className="w-full h-full object-contain rounded-2xl"
+            priority
+          />
         </div>
         <h2 className="text-2xl font-black text-neutral-900 dark:text-neutral-100 tracking-tight">
-          KeuanganKu
+          FREEKS <span className="text-orange-500">FinMate</span>
         </h2>
         <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium max-w-xs mx-auto">
           Pencatatan keuangan pribadi dengan AI & Modern Neumorphism.
@@ -60,7 +68,7 @@ export default function LoginPage() {
             <label className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest block mb-2">
               Password Aplikasi
             </label>
-            <div className="relative rounded-2xl neu-sunken p-1.5 focus-within:ring-2 focus-within:ring-emerald-500/40 transition-all">
+            <div className="relative rounded-2xl neu-sunken p-1.5 focus-within:ring-2 focus-within:ring-orange-500/40 transition-all">
               <Lock className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="password"
@@ -76,7 +84,7 @@ export default function LoginPage() {
           </div>
 
           {errorMsg && (
-            <div className="flex items-center gap-2 p-3.5 rounded-2xl neu-sunken text-rose-600 dark:text-rose-400 text-xs font-bold border border-rose-400/40">
+            <div className="flex items-center gap-2 p-3.5 rounded-2xl neu-sunken text-orange-600 dark:text-orange-400 text-xs font-bold border border-orange-500/30">
               <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{errorMsg}</span>
             </div>
@@ -95,7 +103,7 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={handleDemoBypass}
-            className="w-full py-3 px-4 rounded-2xl neu-button text-emerald-600 dark:text-emerald-400 text-xs font-extrabold flex items-center justify-center gap-2"
+            className="w-full py-3 px-4 rounded-2xl neu-button text-orange-600 dark:text-orange-400 text-xs font-extrabold flex items-center justify-center gap-2"
           >
             <ShieldCheck className="w-4 h-4 stroke-[2.2]" />
             <span>Mode Demo: Masuk Langsung</span>

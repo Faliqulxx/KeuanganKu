@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useFinance } from '@/lib/finance-context';
-import { Header } from '@/components/header';
 import { BottomNav } from '@/components/bottom-nav';
 import { TransactionList } from '@/components/transaction-list';
 import { formatMonthYear } from '@/lib/format';
@@ -13,13 +12,11 @@ export default function TransaksiPage() {
 
   return (
     <>
-      <Header page="transaction" showMonthPicker={true} />
-
-      <main className="flex-1 px-4 py-4 space-y-4">
+      <main className="flex-1 px-4 pt-5 pb-4 space-y-4">
         {/* Page Title Card with Transaction Period Context */}
         <div className="flex items-center justify-between p-4 rounded-3xl neu-card">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl neu-button text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl neu-button text-orange-600 dark:text-orange-400 flex items-center justify-center">
               <ReceiptText className="w-5 h-5 stroke-[2.2]" />
             </div>
             <div>

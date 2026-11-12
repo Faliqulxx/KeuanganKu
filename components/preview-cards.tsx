@@ -37,7 +37,7 @@ export function PreviewCards({ items: initialItems, warnings = [], onSave, onCan
         {/* Header */}
         <div className="px-5 py-4 border-b border-[var(--neu-border)] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl neu-button text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-xl neu-button text-orange-600 dark:text-orange-400 flex items-center justify-center">
               <Sparkles className="w-4 h-4 stroke-[2.2]" />
             </div>
             <div>
@@ -118,7 +118,7 @@ export function PreviewCards({ items: initialItems, warnings = [], onSave, onCan
 
                     <button
                       onClick={() => handleRemove(index)}
-                      className="w-7 h-7 rounded-lg neu-button flex items-center justify-center text-neutral-400 hover:text-rose-600 transition"
+                      className="w-7 h-7 rounded-lg neu-button flex items-center justify-center text-neutral-400 hover:text-rose-600 dark:hover:text-rose-400 transition"
                       title="Hapus dari daftar"
                     >
                       <Trash2 className="w-3.5 h-3.5" />

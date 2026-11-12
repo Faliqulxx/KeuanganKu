@@ -186,33 +186,28 @@ function calculateSummary(
 }
 
 export function FinanceProvider({ children }: { children: React.ReactNode }) {
-  const [transactions, setTransactions] = useState<Transaction[]>(() => {
-    if (typeof window !== 'undefined') {
+  // Selalu inisialisasi dengan INITIAL_TRANSACTIONS agar HTML SSR identik dengan render pertama klien
+  const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
+  const [budgets, setBudgets] = useState<Record<string, number>>(DEFAULT_BUDGETS);
+  const isLoadedRef = React.useRef(false);
+
+  // Muat data dari localStorage HANYA setelah mount di klien untuk menghindari Hydration Mismatch
+  useEffect(() => {
+    try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch (e) {
-          console.error('Error parsing stored transactions', e);
-        }
+        setTransactions(JSON.parse(saved));
       }
-    }
-    return INITIAL_TRANSACTIONS;
-  });
-
-  const [budgets, setBudgets] = useState<Record<string, number>>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem(BUDGET_STORAGE_KEY);
-      if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch (e) {
-          console.error('Error parsing stored budgets', e);
-        }
+      const savedBudgets = localStorage.getItem(BUDGET_STORAGE_KEY);
+      if (savedBudgets) {
+        setBudgets(JSON.parse(savedBudgets));
       }
+    } catch (e) {
+      console.error('Error loading stored finance data', e);
+    } finally {
+      isLoadedRef.current = true;
     }
-    return DEFAULT_BUDGETS;
-  });
+  }, []);
 
   // 1. Dashboard Operational Period (Default: bulan berjalan November 2026)
   const [dashboardPeriod, setDashboardPeriod] = useState<string>('2026-11');
@@ -234,15 +229,15 @@ export function FinanceProvider({ children }: { children: React.ReactNode }) {
   const [toast, setToast] = useState<{ message: string; action?: { label: string; onClick: () => void } } | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>(INITIAL_CHAT_MESSAGES);
 
-  // Sync to local storage
+  // Sync to local storage hanya setelah pemuatan awal selesai
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (isLoadedRef.current) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
     }
   }, [transactions]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (isLoadedRef.current) {
       localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(budgets));
     }
   }, [budgets]);

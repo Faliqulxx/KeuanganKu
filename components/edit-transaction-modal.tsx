@@ -153,7 +153,7 @@ export function EditTransactionModal({ transaction, onClose }: EditTransactionMo
           <button
             type="button"
             onClick={handleDelete}
-            className="w-12 h-12 rounded-2xl neu-button text-rose-500 hover:text-rose-600 flex items-center justify-center shrink-0"
+            className="w-12 h-12 rounded-2xl neu-button text-rose-500 hover:text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0 transition-colors"
             title="Hapus transaksi"
           >
             <Trash2 className="w-4 h-4" />

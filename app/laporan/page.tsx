@@ -3,13 +3,12 @@
 import React, { useState } from 'react';
 import { useFinance } from '@/lib/finance-context';
 import { formatRupiah } from '@/lib/format';
-import { Header } from '@/components/header';
 import { BottomNav } from '@/components/bottom-nav';
 import { CategoryPieChart } from '@/components/charts/category-pie-chart';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { DateRangeModal } from '@/components/date-range-modal';
 import { BudgetTrackerCard } from '@/components/budget-tracker-card';
-import { CATEGORY_ICONS, CATEGORY_COLORS } from '@/lib/categories';
+import { CATEGORY_ICONS, CATEGORY_COLORS, CategoryIcon } from '@/lib/categories';
 import {
   Sparkles,
   RotateCcw,
@@ -59,14 +58,12 @@ export function LaporanPage() {
 
   return (
     <>
-      <Header page="report" showMonthPicker={true} />
-
-      <main className="flex-1 px-4 py-4 space-y-4">
+      <main className="flex-1 px-4 pt-5 pb-4 space-y-4">
         {/* Dedicated Report Analysis Period Control Card */}
-        <div className="rounded-3xl p-4.5 neu-card space-y-3 border border-emerald-500/20">
+        <div className="rounded-3xl p-4.5 neu-card space-y-3 border border-orange-500/20">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-2xl neu-button text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-2xl neu-button text-orange-600 dark:text-orange-400 flex items-center justify-center">
                 <Calendar className="w-4 h-4 stroke-[2.2]" />
               </div>
               <div>
@@ -81,7 +78,7 @@ export function LaporanPage() {
 
             <button
               onClick={() => setIsDateModalOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl neu-button text-xs font-bold text-emerald-600 dark:text-emerald-400"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl neu-button text-xs font-bold text-orange-600 dark:text-orange-400"
               title="Ganti rentang tanggal / bulan / tahun"
             >
               <span>Ubah Periode</span>
@@ -97,23 +94,23 @@ export function LaporanPage() {
             {/* Export CSV strictly for active report period */}
             <button
               onClick={exportReportCsv}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl neu-button text-xs font-bold text-neutral-800 dark:text-neutral-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl neu-button text-xs font-bold text-neutral-800 dark:text-neutral-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
               title={`Unduh CSV transaksi ${reportPeriod.label}`}
             >
-              <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+              <FileSpreadsheet className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
               <span>Export CSV Laporan</span>
             </button>
           </div>
         </div>
 
         {/* AI Insight Premium Card (Spesifik Periode Laporan) */}
-        <div className="rounded-3xl p-5 neu-card relative overflow-hidden space-y-3.5 border border-emerald-500/25">
+        <div className="rounded-3xl p-5 neu-card relative overflow-hidden space-y-3.5 border border-orange-500/25">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl neu-sunken text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl neu-sunken text-orange-600 dark:text-orange-400 flex items-center justify-center">
                 <Sparkles className="w-4 h-4 stroke-[2.2]" />
               </div>
-              <h3 className="font-black text-xs text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">
+              <h3 className="font-black text-xs text-orange-600 dark:text-orange-400 uppercase tracking-widest">
                 Insight AI ({reportPeriod.label})
               </h3>
             </div>
@@ -171,9 +168,24 @@ export function LaporanPage() {
             <p className="text-base font-black text-neutral-900 dark:text-neutral-100">
               {formatRupiah(reportSummary.expense)}
             </p>
-            <div className="flex items-center gap-1 text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
-              <TrendingDown className="w-3 h-3" />
-              <span>{expenseDiffPercent}% efisiensi</span>
+            <div
+              className={`flex items-center gap-1 text-[10px] font-bold ${
+                expenseDiffPercent > 0
+                  ? 'text-rose-600 dark:text-rose-400'
+                  : 'text-emerald-600 dark:text-emerald-400'
+              }`}
+            >
+              {expenseDiffPercent > 0 ? (
+                <>
+                  <TrendingUp className="w-3 h-3" />
+                  <span>+{expenseDiffPercent}% bertambah</span>
+                </>
+              ) : (
+                <>
+                  <TrendingDown className="w-3 h-3" />
+                  <span>{Math.abs(expenseDiffPercent)}% efisiensi</span>
+                </>
+              )}
             </div>
           </div>
 
@@ -182,11 +194,11 @@ export function LaporanPage() {
               <span className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-wider">
                 Saldo Periode Ini
               </span>
-              <div className="w-7 h-7 rounded-xl neu-sunken text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-xl neu-sunken text-orange-600 dark:text-orange-400 flex items-center justify-center">
                 <Wallet className="w-3.5 h-3.5 stroke-[2.5]" />
               </div>
             </div>
-            <p className="text-base font-black text-emerald-600 dark:text-emerald-400">
+            <p className="text-base font-black text-orange-600 dark:text-orange-400">
               {formatRupiah(reportSummary.balance)}
             </p>
             <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-bold block">
@@ -199,14 +211,14 @@ export function LaporanPage() {
               <span className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-wider">
                 Rasio Tabungan
               </span>
-              <div className="w-7 h-7 rounded-xl neu-sunken text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-xl neu-sunken text-orange-600 dark:text-orange-400 flex items-center justify-center">
                 <Percent className="w-3.5 h-3.5 stroke-[2.5]" />
               </div>
             </div>
             <p className="text-base font-black text-neutral-900 dark:text-neutral-100">
               {savingsRatio}%
             </p>
-            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold block">
+            <span className="text-[10px] text-orange-600 dark:text-orange-400 font-bold block">
               {savingsRatio >= 20 ? 'Target tercapai (>20%)' : 'Perlu penghematan'}
             </span>
           </div>
@@ -239,7 +251,12 @@ export function LaporanPage() {
                   <div key={cat.category} className="space-y-1.5">
                     <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm">{icon}</span>
+                        <div
+                          className="w-6 h-6 rounded-lg neu-sunken flex items-center justify-center shrink-0"
+                          style={{ color }}
+                        >
+                          <CategoryIcon category={cat.category} className="w-3.5 h-3.5 stroke-[2.2]" />
+                        </div>
                         <span className="font-extrabold text-neutral-800 dark:text-neutral-200">
                           {cat.category}
                         </span>

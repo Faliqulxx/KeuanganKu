@@ -2,14 +2,14 @@ import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Keuangan Pribadi',
-    short_name: 'Keuangan',
+    name: 'FREEKS FinMate',
+    short_name: 'FinMate',
     description: 'Catatan keuangan pribadi dengan input AI dan scan struk',
     start_url: '/',
     display: 'standalone',
     orientation: 'portrait',
-    background_color: '#FAFAFA',
-    theme_color: '#059669',
+    background_color: '#171513',
+    theme_color: '#FF8A1C',
     icons: [
       {
         src: '/icons/icon.svg',

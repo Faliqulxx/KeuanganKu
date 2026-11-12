@@ -80,7 +80,7 @@ export function QuickInput() {
     <div className="rounded-3xl p-5 neu-card space-y-3.5 transition-all w-full min-w-0 overflow-hidden">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-lg neu-button flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+          <div className="w-6 h-6 rounded-lg neu-button flex items-center justify-center text-orange-600 dark:text-orange-400">
             <Sparkles className="w-3.5 h-3.5" />
           </div>
           <span className="text-xs font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight">
@@ -93,7 +93,7 @@ export function QuickInput() {
       </div>
 
       {/* Sunken Input Box */}
-      <div className="relative flex items-center rounded-2xl neu-sunken p-2 focus-within:ring-2 focus-within:ring-emerald-500/40 transition-all">
+      <div className="relative flex items-center rounded-2xl neu-sunken p-2 focus-within:ring-2 focus-within:ring-orange-500/40 transition-all">
         <textarea
           rows={2}
           value={inputText}
@@ -132,12 +132,12 @@ export function QuickInput() {
             onClick={handleVoiceSimulate}
             className={`flex items-center gap-1.5 text-[11px] font-bold px-3 py-2 rounded-xl transition-all ${
               isListeningVoice
-                ? 'neu-sunken text-rose-600 animate-pulse'
+                ? 'neu-sunken text-orange-600 animate-pulse'
                 : 'neu-button text-neutral-700 dark:text-neutral-200'
             }`}
             title="Input suara (mic)"
           >
-            <Mic className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <Mic className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
             <span>Suara</span>
           </button>
 
@@ -147,7 +147,7 @@ export function QuickInput() {
             className="flex items-center gap-1.5 text-[11px] font-bold px-3 py-2 rounded-xl neu-button text-neutral-700 dark:text-neutral-200"
             title="Scan struk kamera"
           >
-            <Camera className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+            <Camera className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400" />
             <span>Scan Struk</span>
           </button>
         </div>
@@ -167,7 +167,7 @@ export function QuickInput() {
               setInputText(sug);
               handleSubmit(sug);
             }}
-            className="shrink-0 px-2.5 py-1 rounded-xl neu-button text-neutral-700 dark:text-neutral-300 text-[10.5px] font-semibold hover:text-emerald-600 dark:hover:text-emerald-400"
+            className="shrink-0 px-2.5 py-1 rounded-xl neu-button text-neutral-700 dark:text-neutral-300 text-[10.5px] font-semibold hover:text-orange-600 dark:hover:text-orange-400"
           >
             {sug}
           </button>

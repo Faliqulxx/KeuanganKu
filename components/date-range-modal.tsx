@@ -85,7 +85,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
         {/* Header */}
         <div className="px-5 py-4 border-b border-[var(--neu-border)] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-2xl neu-button text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-2xl neu-button text-orange-600 dark:text-orange-400 flex items-center justify-center">
               <Calendar className="w-4 h-4 stroke-[2.2]" />
             </div>
             <div>
@@ -113,7 +113,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
               onClick={() => setActiveTab('month')}
               className={`py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
                 activeTab === 'month'
-                  ? 'neu-button text-emerald-600 dark:text-emerald-400'
+                  ? 'neu-button text-orange-600 dark:text-orange-400'
                   : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
               }`}
             >
@@ -124,7 +124,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
               onClick={() => setActiveTab('range')}
               className={`py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
                 activeTab === 'range'
-                  ? 'neu-button text-emerald-600 dark:text-emerald-400'
+                  ? 'neu-button text-orange-600 dark:text-orange-400'
                   : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
               }`}
             >
@@ -135,7 +135,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
               onClick={() => setActiveTab('year')}
               className={`py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
                 activeTab === 'year'
-                  ? 'neu-button text-emerald-600 dark:text-emerald-400'
+                  ? 'neu-button text-orange-600 dark:text-orange-400'
                   : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
               }`}
             >
@@ -146,7 +146,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
               onClick={() => setActiveTab('all')}
               className={`py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
                 activeTab === 'all'
-                  ? 'neu-button text-emerald-600 dark:text-emerald-400'
+                  ? 'neu-button text-orange-600 dark:text-orange-400'
                   : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200'
               }`}
             >
@@ -176,7 +176,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
                   <select
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(Number(e.target.value))}
-                    className="text-xs bg-transparent border-0 text-emerald-600 dark:text-emerald-400 font-bold focus:outline-none cursor-pointer"
+                    className="text-xs bg-transparent border-0 text-orange-600 dark:text-orange-400 font-bold focus:outline-none cursor-pointer"
                   >
                     {YEARS.map((y) => (
                       <option key={y} value={y} className="bg-[var(--surface-app)] text-neutral-900 dark:text-neutral-100">
@@ -211,7 +211,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
                       }`}
                     >
                       <span className="text-xs">{m.name}</span>
-                      <span className={`text-[10px] font-normal ${isTarget ? 'text-emerald-100' : 'text-neutral-400'}`}>
+                      <span className={`text-[10px] font-normal ${isTarget ? 'text-orange-100' : 'text-neutral-400'}`}>
                         {m.full}
                       </span>
                     </button>
@@ -255,7 +255,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5 text-[11px] text-emerald-600 dark:text-emerald-400 font-bold pt-1">
+                <div className="flex items-center gap-1.5 text-[11px] text-orange-600 dark:text-orange-400 font-bold pt-1">
                   <CalendarDays className="w-3.5 h-3.5 shrink-0" />
                   <span>
                     Rentang: {startDate} s/d {endDate}
@@ -286,16 +286,18 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
                   <button
                     type="button"
                     onClick={() => handleApplyPreset('this_month')}
-                    className="p-3 rounded-2xl neu-button text-left font-bold text-neutral-700 dark:text-neutral-200"
+                    className="p-3 rounded-2xl neu-button text-left font-bold text-neutral-700 dark:text-neutral-200 flex items-center gap-2"
                   >
-                    📅 Bulan Ini (Nov 2026)
+                    <Calendar className="w-4 h-4 text-orange-500 shrink-0" />
+                    <span>Bulan Ini (Nov 2026)</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => handleApplyPreset('last_month')}
-                    className="p-3 rounded-2xl neu-button text-left font-bold text-neutral-700 dark:text-neutral-200"
+                    className="p-3 rounded-2xl neu-button text-left font-bold text-neutral-700 dark:text-neutral-200 flex items-center gap-2"
                   >
-                    📅 Bulan Lalu (Okt 2026)
+                    <Calendar className="w-4 h-4 text-orange-500 shrink-0" />
+                    <span>Bulan Lalu (Okt 2026)</span>
                   </button>
                 </div>
               </div>
@@ -331,7 +333,7 @@ export function DateRangeModal({ isOpen, onClose }: DateRangeModalProps) {
           {/* TAB 4: SEMUA TRANSAKSI */}
           {activeTab === 'all' && (
             <div className="p-4 rounded-3xl neu-card text-center space-y-2">
-              <div className="w-10 h-10 rounded-2xl neu-sunken text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
+              <div className="w-10 h-10 rounded-2xl neu-sunken text-orange-600 dark:text-orange-400 flex items-center justify-center mx-auto">
                 <Layers className="w-5 h-5 stroke-[2.2]" />
               </div>
               <h4 className="font-extrabold text-sm text-neutral-900 dark:text-neutral-100">

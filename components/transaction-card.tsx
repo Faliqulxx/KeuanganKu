@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Transaction } from '@/lib/types';
-import { CATEGORY_ICONS, CATEGORY_COLORS } from '@/lib/categories';
+import { CategoryIcon, CATEGORY_COLORS } from '@/lib/categories';
 import { formatRupiah } from '@/lib/format';
 import { AlertCircle } from 'lucide-react';
 
@@ -13,8 +13,7 @@ interface TransactionCardProps {
 
 export function TransactionCard({ transaction, onClick }: TransactionCardProps) {
   const isIncome = transaction.type === 'income';
-  const iconEmoji = CATEGORY_ICONS[transaction.category] || '💰';
-  const categoryBg = CATEGORY_COLORS[transaction.category] || '#6B7280';
+  const categoryColor = CATEGORY_COLORS[transaction.category] || '#78716C';
 
   return (
     <div
@@ -24,14 +23,15 @@ export function TransactionCard({ transaction, onClick }: TransactionCardProps) 
       className="flex items-center justify-between p-3.5 rounded-2xl neu-button cursor-pointer group text-left transition-all duration-200"
     >
       <div className="flex items-center gap-3 min-w-0">
-        {/* Sunken Neumorphic Icon Well */}
+        {/* Sunken Neumorphic Icon Well with Flat Vector Icon */}
         <div
-          className="w-11 h-11 rounded-2xl neu-sunken flex items-center justify-center text-lg shrink-0"
+          className="w-11 h-11 rounded-2xl neu-sunken flex items-center justify-center shrink-0 transition-colors"
           style={{
-            borderColor: `${categoryBg}40`,
+            borderColor: `${categoryColor}35`,
+            color: categoryColor,
           }}
         >
-          <span>{iconEmoji}</span>
+          <CategoryIcon category={transaction.category} className="w-5 h-5 stroke-[2.2]" />
         </div>
 
         <div className="min-w-0">

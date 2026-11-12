@@ -2,9 +2,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useFinance } from '@/lib/finance-context';
-import { Header } from '@/components/header';
 import { BottomNav } from '@/components/bottom-nav';
 import { Send, Bot, User, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 const PROMPT_SUGGESTIONS = [
   'Berapa pengeluaran bulan ini?',
@@ -40,19 +40,16 @@ export function ChatPage() {
 
   return (
     <div className="fixed inset-0 w-full max-w-md mx-auto flex flex-col overflow-hidden bg-[var(--bg-app)] border-x border-[var(--neu-border-subtle)] z-20">
-      {/* Topbar tetap di atas */}
-      <div className="shrink-0 w-full">
-        <Header page="simple" showMonthPicker={false} />
-
-        {/* Chat status bar */}
-        <div className="px-4 py-2.5 bg-[var(--surface-app)] border-b border-[var(--neu-border)] flex items-center justify-between gap-2 w-full">
+      {/* Chat status bar */}
+      <div className="shrink-0 w-full pt-1">
+        <div className="px-4 py-3 bg-[var(--surface-app)] border-b border-[var(--neu-border)] flex items-center justify-between gap-2 w-full">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span className="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse shrink-0" />
             <span className="text-xs font-extrabold text-neutral-800 dark:text-neutral-200 truncate">
               Asisten Keuangan Cerdas
             </span>
           </div>
-          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold tracking-wider uppercase shrink-0">
+          <span className="text-[10px] text-orange-600 dark:text-orange-400 font-bold tracking-wider uppercase shrink-0">
             Lintas Periode • AI
           </span>
         </div>
@@ -69,19 +66,28 @@ export function ChatPage() {
               className={`flex items-start gap-2.5 w-full ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
             >
               <div
-                className={`w-9 h-9 rounded-2xl flex items-center justify-center shrink-0 ${
-                  isUser
-                    ? 'neu-button text-neutral-800 dark:text-neutral-200'
-                    : 'neu-button text-emerald-600 dark:text-emerald-400'
-                }`}
+                className={`w-9 h-9 rounded-2xl flex items-center justify-center shrink-0 overflow-hidden ${isUser
+                    ? 'neu-button p-0.5'
+                    : 'neu-button text-orange-600 dark:text-orange-400'
+                  }`}
               >
-                {isUser ? <User className="w-4 h-4 stroke-[2.2]" /> : <Bot className="w-4 h-4 stroke-[2.2]" />}
+                {isUser ? (
+                  <Image
+                    src="/brand/profile-avatar.png"
+                    alt="User Avatar"
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-cover object-top rounded-xl"
+                  />
+                ) : (
+                  <Bot className="w-4 h-4 stroke-[2.2]" />
+                )}
               </div>
 
               <div
                 className={`max-w-[78%] min-w-0 break-words rounded-3xl px-4 py-3 text-xs sm:text-sm leading-relaxed transition-all ${
                   isUser
-                    ? 'neu-hero-emerald text-white rounded-tr-none font-medium'
+                    ? 'neu-primary-btn text-white rounded-tr-none font-medium'
                     : 'neu-card text-neutral-900 dark:text-neutral-100 rounded-tl-none font-medium'
                 }`}
               >
@@ -95,7 +101,7 @@ export function ChatPage() {
                 />
                 <span
                   className={`block text-[9px] mt-1.5 text-right font-semibold ${
-                    isUser ? 'text-emerald-200' : 'text-neutral-400'
+                    isUser ? 'text-orange-100' : 'text-neutral-400'
                   }`}
                 >
                   {msg.timestamp}
@@ -107,14 +113,14 @@ export function ChatPage() {
 
         {isTyping && (
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-2xl neu-button text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 rounded-2xl neu-button text-orange-600 dark:text-orange-400 flex items-center justify-center shrink-0">
               <Bot className="w-4 h-4 stroke-[2.2]" />
             </div>
             <div className="neu-card rounded-2xl rounded-tl-none px-4 py-3">
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce" />
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.2s]" />
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.4s]" />
+                <span className="w-2 h-2 rounded-full bg-orange-500 animate-bounce" />
+                <span className="w-2 h-2 rounded-full bg-orange-500 animate-bounce [animation-delay:0.2s]" />
+                <span className="w-2 h-2 rounded-full bg-orange-500 animate-bounce [animation-delay:0.4s]" />
               </div>
             </div>
           </div>
@@ -127,13 +133,13 @@ export function ChatPage() {
       <div className="shrink-0 w-full bg-[var(--bg-app)] border-t border-[var(--neu-border)] pb-[calc(4.75rem+max(env(safe-area-inset-bottom),14px))]">
         {/* Suggestion chips horizontal scroll khusus di dalam barisnya */}
         <div className="w-full min-w-0 px-4 py-2 border-b border-[var(--neu-border-subtle)] overflow-x-auto no-scrollbar flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+          <Sparkles className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400 shrink-0" />
           {PROMPT_SUGGESTIONS.map((sug, i) => (
             <button
               key={i}
               type="button"
               onClick={() => handleSend(sug)}
-              className="shrink-0 px-3 py-1.5 rounded-xl text-[11px] font-bold neu-button text-neutral-700 dark:text-neutral-300 hover:text-emerald-600 dark:hover:text-emerald-400 whitespace-nowrap"
+              className="shrink-0 px-3 py-1.5 rounded-xl text-[11px] font-bold neu-button text-neutral-700 dark:text-neutral-300 hover:text-orange-600 dark:hover:text-orange-400 whitespace-nowrap"
             >
               {sug}
             </button>
