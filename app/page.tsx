@@ -23,40 +23,9 @@ import {
   Wallet,
   TrendingUp,
   TrendingDown,
-  Plus,
-  ScanLine,
-  Bot,
-  FileBarChart,
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-const QUICK_ACTIONS = [
-  {
-    label: 'Tambah',
-    href: '/tambah',
-    icon: Plus,
-    tint: 'bg-orange-500/10 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400',
-  },
-  {
-    label: 'Scan Struk',
-    href: '/tambah',
-    icon: ScanLine,
-    tint: 'bg-orange-500/10 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400',
-  },
-  {
-    label: 'AI Assistant',
-    href: '/chat',
-    icon: Bot,
-    tint: 'bg-orange-500/10 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400',
-  },
-  {
-    label: 'Laporan',
-    href: '/laporan',
-    icon: FileBarChart,
-    tint: 'bg-orange-500/10 dark:bg-orange-500/15 text-orange-600 dark:text-orange-400',
-  },
-];
 
 function percentChange(current: number, previous: number): number | null {
   if (previous === 0) return null;
@@ -266,28 +235,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Menu Cepat */}
-        <div className="grid grid-cols-4 gap-3">
-          {QUICK_ACTIONS.map((action) => {
-            const Icon = action.icon;
-            return (
-              <Link
-                key={action.label}
-                href={action.href}
-                className="flex flex-col items-center gap-1.5 group"
-              >
-                <div className="w-14 h-14 rounded-2xl neu-button flex items-center justify-center group-active:scale-95 transition">
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${action.tint}`}>
-                    <Icon className="w-[18px] h-[18px] stroke-[2.2]" />
-                  </div>
-                </div>
-                <span className="text-[10.5px] font-bold text-neutral-700 dark:text-neutral-300 text-center leading-tight">
-                  {action.label}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+        {/* Quick Natural Language AI Input (Catat Cepat) */}
+        <QuickInput />
 
         {/* Ringkasan Bulan Ini */}
         <div className="space-y-2.5">
@@ -321,9 +270,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Quick Natural Language AI Input */}
-        <QuickInput />
-
         {/* Category Donut Chart Card (Bulan Berjalan) */}
         <div className="rounded-3xl p-5 neu-card space-y-3.5">
           <div className="flex items-center justify-between">
@@ -332,7 +278,7 @@ export default function HomePage() {
                 <PieChart className="w-3.5 h-3.5" />
               </div>
               <h3 className="text-xs font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight">
-                Pengeluaran Kategori ({dashboardSummary.periodLabel})
+                Pengeluaran Kategori
               </h3>
             </div>
             <Link
@@ -376,7 +322,7 @@ export default function HomePage() {
                 <Clock className="w-3.5 h-3.5" />
               </div>
               <h3 className="text-xs font-extrabold text-neutral-900 dark:text-neutral-100 tracking-tight">
-                Transaksi Terbaru ({dashboardSummary.periodLabel})
+                Transaksi Terbaru
               </h3>
             </div>
             <Link

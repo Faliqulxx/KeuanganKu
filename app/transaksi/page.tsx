@@ -4,11 +4,10 @@ import React from 'react';
 import { useFinance } from '@/lib/finance-context';
 import { BottomNav } from '@/components/bottom-nav';
 import { TransactionList } from '@/components/transaction-list';
-import { formatMonthYear } from '@/lib/format';
 import { ReceiptText } from 'lucide-react';
 
 export default function TransaksiPage() {
-  const { transactionFilteredList, transactionPeriod } = useFinance();
+  const { transactions } = useFinance();
 
   return (
     <>
@@ -24,13 +23,13 @@ export default function TransaksiPage() {
                 Riwayat Transaksi
               </h2>
               <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-semibold mt-0.5">
-                {transactionFilteredList.length} transaksi • {formatMonthYear(transactionPeriod)}
+                {transactions.length} transaksi tercatat
               </p>
             </div>
           </div>
         </div>
 
-        <TransactionList transactions={transactionFilteredList} showFilters={true} />
+        <TransactionList transactions={transactions} showFilters={true} />
       </main>
 
       <BottomNav />

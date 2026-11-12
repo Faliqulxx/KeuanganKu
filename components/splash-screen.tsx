@@ -61,11 +61,6 @@ export function SplashScreen() {
             Your Smart Financial Companion.
           </p>
         </div>
-
-        {/* Loading Progress Bar Indicator */}
-        <div className="w-36 h-1.5 rounded-full bg-neutral-200 dark:bg-stone-800 overflow-hidden relative">
-          <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-amber-400 via-orange-500 to-orange-600 rounded-full w-full animate-[progress_1.2s_ease-in-out_infinite]" />
-        </div>
       </div>
 
       {/* Powered By Footer */}
@@ -74,20 +69,6 @@ export function SplashScreen() {
           Powered by FREEKS
         </span>
       </div>
-
-      <style jsx>{`
-        @keyframes progress {
-          0% {
-            transform: translateX(-100%);
-          }
-          50% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
     </div>
   );
 }

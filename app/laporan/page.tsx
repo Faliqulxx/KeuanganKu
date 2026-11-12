@@ -111,7 +111,7 @@ export function LaporanPage() {
                 <Sparkles className="w-4 h-4 stroke-[2.2]" />
               </div>
               <h3 className="font-black text-xs text-orange-600 dark:text-orange-400 uppercase tracking-widest">
-                Insight AI ({reportPeriod.label})
+                Insight AI
               </h3>
             </div>
 
@@ -169,11 +169,10 @@ export function LaporanPage() {
               {formatRupiah(reportSummary.expense)}
             </p>
             <div
-              className={`flex items-center gap-1 text-[10px] font-bold ${
-                expenseDiffPercent > 0
+              className={`flex items-center gap-1 text-[10px] font-bold ${expenseDiffPercent > 0
                   ? 'text-rose-600 dark:text-rose-400'
                   : 'text-emerald-600 dark:text-emerald-400'
-              }`}
+                }`}
             >
               {expenseDiffPercent > 0 ? (
                 <>
@@ -228,7 +227,7 @@ export function LaporanPage() {
         <div className="rounded-3xl p-5 neu-card space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-extrabold text-neutral-900 dark:text-neutral-100 text-xs uppercase tracking-wider">
-              Rincian Kategori ({reportPeriod.label})
+              Rincian Kategori
             </h3>
             <span className="text-[10px] text-neutral-400 font-bold">
               Total {reportSummary.byCategory.length} kategori

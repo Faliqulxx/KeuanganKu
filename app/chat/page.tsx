@@ -3,17 +3,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useFinance } from '@/lib/finance-context';
 import { BottomNav } from '@/components/bottom-nav';
-import { Send, Bot, User, Sparkles } from 'lucide-react';
+import { Send, Bot, User } from 'lucide-react';
 import Image from 'next/image';
-
-const PROMPT_SUGGESTIONS = [
-  'Berapa pengeluaran bulan ini?',
-  'Bandingkan pengeluaran bulan Oktober dan November',
-  'Berapa total pengeluaran saya selama 7 hari terakhir?',
-  'Berapa total pemasukan sepanjang tahun 2026?',
-  'Hari ini habis berapa?',
-  'Berapa saldo bulan ini?',
-];
 
 export function ChatPage() {
   const { chatMessages, sendChatMessage } = useFinance();
@@ -129,23 +120,8 @@ export function ChatPage() {
         <div ref={messagesEndRef} />
       </main>
 
-      {/* Area Bawah Tetap (Suggestion Chips + Tempat Tulis Chat) — Tidak ikut tergeser */}
+      {/* Area Bawah Tetap (Tempat Tulis Chat) — Tidak ikut tergeser */}
       <div className="shrink-0 w-full bg-[var(--bg-app)] border-t border-[var(--neu-border)] pb-[calc(4.75rem+max(env(safe-area-inset-bottom),14px))]">
-        {/* Suggestion chips horizontal scroll khusus di dalam barisnya */}
-        <div className="w-full min-w-0 px-4 py-2 border-b border-[var(--neu-border-subtle)] overflow-x-auto no-scrollbar flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-orange-600 dark:text-orange-400 shrink-0" />
-          {PROMPT_SUGGESTIONS.map((sug, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => handleSend(sug)}
-              className="shrink-0 px-3 py-1.5 rounded-xl text-[11px] font-bold neu-button text-neutral-700 dark:text-neutral-300 hover:text-orange-600 dark:hover:text-orange-400 whitespace-nowrap"
-            >
-              {sug}
-            </button>
-          ))}
-        </div>
-
         {/* Input box tempat tulis chat */}
         <div className="p-3 w-full">
           <form
